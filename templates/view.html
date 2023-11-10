@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Data</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="/profile" class="navbar-brand">Grab a Cab</a>
+    </div>
+    <div class="navbar-right">
+        <a href="/bookcab" class="navbar-link">Book a Cab</a>
+        <a href="/viewrides" class="navbar-link">View History</a>
+    </div>
+</nav>
+<h1>Past rides</h1>
+<div>
+    <table border="1">
+        <tr>
+            {% for column in results['columns'] %}
+            <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in results['rows'] %}
+        <tr>
+            {% for value in row %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>

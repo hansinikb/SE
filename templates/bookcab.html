@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='/static/styles.css' />
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="/profile" class="navbar-brand">Grab a Cab</a>
+    </div>
+    <div class="navbar-right">
+      <a href="/bookcab" class="navbar-link">Book a Cab</a>
+      <a href="/viewrides" class="navbar-link">View History</a>
+    </div>
+  </nav>
+
+  <h1>Book a Cab</h1>
+  <div>
+  <div class="card" style="height: 400px;">
+  <form method="POST" action="/bookcab">
+    <label for="source">Source:</label>
+    <input type="text" name="source" required><br>
+
+    <label for="destination">Destination:</label>
+    <input type="text" name="destination" required><br>
+
+    <label for="wallet">Current Wallet Balance:</label>
+    <span>{{ wallet }}</span><br>
+
+    <label for="driver_name">Select a Driver:</label>
+    <select name="driver_name" class ="available_drivers" required>
+      {% for driver in available_drivers %}
+      <option>{{ driver[3] }} {{ driver[4] }} - {{ driver[2] }}</option>
+      {% endfor %}
+    </select><br>
+
+    <input type="submit" value="Book Now">
+  </form>
+</div>
+  {% if booking_confirmed %}
+  <div class="card" style="height: 450px;">
+    <h3>Booking Confirmed!</h3>
+    <p>Driver: {{driver_name}}</p>
+    <p>Vehicle: {{vehicle}}</p>
+    <p>Source: {{ source }}</p>
+    <p>Destination: {{ dest }}</p>
+    <p>Estimated Payment: Rs. {{ est_pay }}</p>
+    <p>Available Wallet Balance: Rs. {{ wallet }}</p>
+    {% endif %}
+  </div>
+</div>
+</body>
